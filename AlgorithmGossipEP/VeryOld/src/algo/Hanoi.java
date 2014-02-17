@@ -61,12 +61,12 @@ public class Hanoi {
 	 * @param args
 	 */
 	public static void main(String args[]){
-		out.format("Number of plates:");
+		out.format("請輸入盤數:");
 		Hanoi hanoi = new Hanoi();
 		try {
 			int n = new Scanner(System.in).nextInt();
 			for(Move move: hanoi.solve(n)){
-				out.format("From  %c to %c%n", move.from, move.to);
+				out.format("盤由  %c 移至 %c%n", move.from, move.to);
 			}
 		} catch (NumberFormatException nfe) {
 			out.format("Not a number");

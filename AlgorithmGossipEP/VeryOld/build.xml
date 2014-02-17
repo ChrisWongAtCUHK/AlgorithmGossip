@@ -35,7 +35,7 @@
 	
     <!-- Generate java document -->
     <target name="doc" depends="check">
-        <javadoc destdir="${javadoc-dir}">
+        <javadoc destdir="${javadoc-dir}" encoding="utf-8" charset="utf-8">
             <fileset dir="${src-dir}" casesensitive="yes">
             	<include name="**/*.java"/>
             </fileset>
