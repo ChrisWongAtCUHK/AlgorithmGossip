@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * @author Chris Wong
  * <p>
- * <a href="http://openhome.cc/Gossip/AlgorithmGossip/FibonacciNumber.htm.htm">Fibonacci</a>
+ * <a href="http://openhome.cc/Gossip/AlgorithmGossip/FibonacciNumber.htm.htm">FibonacciByArray</a>
  * </p>
  */
 public class FibonacciByArray {
