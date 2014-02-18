@@ -6,7 +6,8 @@
 	<target name="setProperties" description="set up properties">
 		<property name="project-name"       		value="AlgorithmGossip"/>
         <property name="hanoi-main-class"			value="algo.Hanoi"/>
-		<property name="fib-main-class"				value="algo.Fibonacci"/>
+		<property name="fib-arr-main-class"			value="algo.Fibonacci.FibonacciByArray"/>
+		<property name="fib-rec-main-class"			value="algo.Fibonacci.FibonacciByRecurrsion"/>
         <property name="base-dir"           		value="bin"/>
 		<property name="deploy-dir"          	 	value="deploy"/>
         <property name="javadoc-dir"       			value="doc"/>
@@ -75,23 +76,33 @@
         <java classname="${hanoi-main-class}" classpath="${base-dir}" >
         </java>
     </target>
-	<target name="run fib" depends="compile">
-        <java classname="${fib-main-class}" classpath="${base-dir}" >
+	<target name="run fib-arr" depends="compile">
+        <java classname="${fib-arr-main-class}" classpath="${base-dir}" >
         	 <sysproperty key="n" value="${n}"/>
         </java>
     </target>	
-
+	<target name="run fib-rec" depends="compile">
+        <java classname="${fib-rec-main-class}" classpath="${base-dir}" >
+        	 <sysproperty key="n" value="${n}"/>
+        </java>
+    </target>	
+		
 	<!-- Run by jar -->
 	<target name="jar hanoi" depends="build">
 		<java fork="true" failonerror="true" classname="${hanoi-main-class}" classpath="deploy/${project-name}.jar" >
 		</java>
     </target>
-	<target name="jar fib" depends="build">
-		<java fork="true" failonerror="true" classname="${fib-main-class}" classpath="deploy/${project-name}.jar" >
+	<target name="jar fib-arr" depends="build">
+		<java fork="true" failonerror="true" classname="${fib-arr-main-class}" classpath="deploy/${project-name}.jar" >
 			<sysproperty key="n" value="${n}"/>
 		</java>
     </target>
-	
+	<target name="jar fib-rec" depends="build">
+		<java fork="true" failonerror="true" classname="${fib-rec-main-class}" classpath="deploy/${project-name}.jar" >
+			<sysproperty key="n" value="${n}"/>
+		</java>
+    </target>
+			
 	<!-- Help menu -->
 	<target name="help" description="help information" depends="check">
 		<echo>Recommendation: run by java command instead of ant</echo>
@@ -99,12 +110,17 @@
 		<echo>	alias to java -cp bin ${hanoi-main-class}</echo>
 		<echo>Sample cmd: ant "jar hanoi"</echo>
 		<echo>	alias to java -cp deploy/${project-name}.jar ${hanoi-main-class}</echo>
-		<echo>Sample cmd: ant "run fib"</echo>
-		<echo>	alias to java -cp bin -Dn=3 ${fib-main-class}</echo>
-		<echo>Sample cmd: ant "run fib" -Dn=20</echo>
-		<echo>	alias to java -cp bin -Dn=20 ${fib-main-class}</echo>
-		<echo>Sample cmd: ant "jar fib" -Dn=20</echo>
-		<echo>	alias to java -cp deploy/${project-name}.jar -Dn=20 ${fib-main-class}</echo>	
-
+		<echo>Sample cmd: ant "run fib-arr"</echo>
+		<echo>	alias to java -cp bin -Dn=3 ${fib-arr-main-class}</echo>
+		<echo>Sample cmd: ant "run fib-arr" -Dn=20</echo>
+		<echo>	alias to java -cp bin -Dn=20 ${fib-arr-main-class}</echo>
+		<echo>Sample cmd: ant "jar fib-arr" -Dn=20</echo>
+		<echo>	alias to java -cp deploy/${project-name}.jar -Dn=20 ${fib-arr-main-class}</echo>	
+		<echo>Sample cmd: ant "run fib-rec"</echo>
+		<echo>	alias to java -cp bin -Dn=3 ${fib-rec-main-class}</echo>
+		<echo>Sample cmd: ant "run fib-rec" -Dn=20</echo>
+		<echo>	alias to java -cp bin -Dn=20 ${fib-rec-main-class}</echo>
+		<echo>Sample cmd: ant "jar fib-rec" -Dn=20</echo>
+		<echo>	alias to java -cp deploy/${project-name}.jar -Dn=20 ${fib-rec-main-class}</echo>
 	</target>
 </project>
