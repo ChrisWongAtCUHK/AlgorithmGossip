@@ -1,4 +1,4 @@
-package algo.Fibonacci;
+package algo.FibonacciNumber;
 
 /**
  * @author Chris Wong
