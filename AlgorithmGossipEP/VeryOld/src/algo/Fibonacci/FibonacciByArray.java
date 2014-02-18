@@ -1,4 +1,4 @@
-package algo;
+package algo.Fibonacci;
 
 import java.util.*;
 /**
@@ -7,7 +7,7 @@ import java.util.*;
  * <a href="http://openhome.cc/Gossip/AlgorithmGossip/FibonacciNumber.htm.htm">Fibonacci</a>
  * </p>
  */
-public class Fibonacci {
+public class FibonacciByArray {
 
 	/**
 	 * 
@@ -33,7 +33,7 @@ public class Fibonacci {
 	}
 	
 	public static void main(String[] args){
-		Fibonacci fibonacci = new Fibonacci();
+		FibonacciByArray fibonacci = new FibonacciByArray();
 		String arg = System.getProperty("n");
 		try {
 			
