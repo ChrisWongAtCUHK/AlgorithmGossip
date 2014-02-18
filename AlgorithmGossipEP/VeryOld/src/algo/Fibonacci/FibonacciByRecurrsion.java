@@ -29,7 +29,7 @@ public class FibonacciByRecurrsion {
 		try {
 			int n = Integer.valueOf(arg);
 			for(int i = 0; i < n; i++){
-				System.out.format("%d %n", fib(i));
+				System.out.format("fib(%d)=%d %n", i, fib(i));
 			}
 		} catch (NumberFormatException nfe) {
 			System.out.format("%s is not an integer.%n", arg);

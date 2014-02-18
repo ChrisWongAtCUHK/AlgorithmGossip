@@ -39,7 +39,7 @@ public class FibonacciByArray {
 			
 			int n = Integer.valueOf(arg);
 			for(int i = 0; i < n; i++){
-				System.out.format("%d %n", fibonacci.get(i));
+				System.out.format("fib(%d)=%d %n", i, fibonacci.get(i));
 			}
 		} catch (NumberFormatException nfe) {
 			System.out.format("%s is not an integer.%n", arg);
