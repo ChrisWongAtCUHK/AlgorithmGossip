@@ -6,9 +6,9 @@
 	<target name="setProperties" description="set up properties">
 		<property name="project-name"       		value="AlgorithmGossip"/>
         <property name="hanoi-main-class"			value="algo.Hanoi"/>
-		<property name="fib-arr-main-class"			value="algo.Fibonacci.FibonacciByArray"/>
-		<property name="fib-rec-main-class"			value="algo.Fibonacci.FibonacciByRecurrsion"/>
-		<property name="fib-mul-main-class"			value="algo.Fibonacci.FibonacciByMultiplication"/>
+		<property name="fib-arr-main-class"			value="algo.FibonacciNumber.FibonacciByArray"/>
+		<property name="fib-rec-main-class"			value="algo.FibonacciNumber.FibonacciByRecurrsion"/>
+		<property name="fib-mul-main-class"			value="algo.FibonacciNumber.FibonacciByMultiplication"/>
         <property name="base-dir"           		value="bin"/>
 		<property name="deploy-dir"          	 	value="deploy"/>
         <property name="javadoc-dir"       			value="doc"/>
