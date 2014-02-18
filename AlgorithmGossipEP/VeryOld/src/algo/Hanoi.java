@@ -4,7 +4,6 @@ import java.util.*;
 
 import static java.lang.System.out;
 
-// http://openhome.cc/Gossip/AlgorithmGossip/HanoiTower.htm
 /**
  * @author Chris Wong
  * <p>
