@@ -8,6 +8,7 @@
         <property name="hanoi-main-class"			value="algo.Hanoi"/>
 		<property name="fib-arr-main-class"			value="algo.Fibonacci.FibonacciByArray"/>
 		<property name="fib-rec-main-class"			value="algo.Fibonacci.FibonacciByRecurrsion"/>
+		<property name="fib-mul-main-class"			value="algo.Fibonacci.FibonacciByMultiplication"/>
         <property name="base-dir"           		value="bin"/>
 		<property name="deploy-dir"          	 	value="deploy"/>
         <property name="javadoc-dir"       			value="doc"/>
@@ -86,7 +87,12 @@
         	 <sysproperty key="n" value="${n}"/>
         </java>
     </target>	
-		
+	<target name="run fib-mul" depends="compile">
+        <java classname="${fib-mul-main-class}" classpath="${base-dir}" >
+        	 <sysproperty key="n" value="${n}"/>
+        </java>
+    </target>
+	
 	<!-- Run by jar -->
 	<target name="jar hanoi" depends="build">
 		<java fork="true" failonerror="true" classname="${hanoi-main-class}" classpath="deploy/${project-name}.jar" >
@@ -99,6 +105,11 @@
     </target>
 	<target name="jar fib-rec" depends="build">
 		<java fork="true" failonerror="true" classname="${fib-rec-main-class}" classpath="deploy/${project-name}.jar" >
+			<sysproperty key="n" value="${n}"/>
+		</java>
+    </target>
+	<target name="jar fib-mul" depends="build">
+		<java fork="true" failonerror="true" classname="${fib-mul-main-class}" classpath="deploy/${project-name}.jar" >
 			<sysproperty key="n" value="${n}"/>
 		</java>
     </target>
@@ -122,5 +133,11 @@
 		<echo>	alias to java -cp bin -Dn=20 ${fib-rec-main-class}</echo>
 		<echo>Sample cmd: ant "jar fib-rec" -Dn=20</echo>
 		<echo>	alias to java -cp deploy/${project-name}.jar -Dn=20 ${fib-rec-main-class}</echo>
+		<echo>Sample cmd: ant "run fib-mul"</echo>
+		<echo>	alias to java -cp bin -Dn=3 ${fib-mul-main-class}</echo>
+		<echo>Sample cmd: ant "run fib-mul" -Dn=20</echo>
+		<echo>	alias to java -cp bin -Dn=20 ${fib-mul-main-class}</echo>
+		<echo>Sample cmd: ant "jar fib-mul" -Dn=20</echo>
+		<echo>	alias to java -cp deploy/${project-name}.jar -Dn=20 ${fib-mul-main-class}</echo>
 	</target>
 </project>
