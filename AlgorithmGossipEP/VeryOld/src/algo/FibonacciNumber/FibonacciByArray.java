@@ -1,5 +1,6 @@
 package algo.FibonacciNumber;
 
+import java.math.BigInteger;
 import java.util.*;
 /**
  * @author Chris Wong
@@ -22,14 +23,14 @@ public class FibonacciByArray {
 	 * @param n index of list
 	 * @return nth fibonacci number
 	 */
-	public Integer get(int n){
+	public BigInteger get(int n){
 		if(n >= fib.size()){
 			for(int i = fib.size(); i <= n; i++){
 				fib.add(fib.get(i - 1) + fib.get(i - 2));
 			}
 		}
 		
-		return fib.get(n);
+		return new BigInteger(fib.get(n).toString());
 	}
 	
 	public static void main(String[] args){
@@ -39,7 +40,7 @@ public class FibonacciByArray {
 			
 			int n = Integer.valueOf(arg);
 			for(int i = 0; i < n; i++){
-				System.out.format("fib(%d)=%d %n", i, fibonacci.get(i));
+				System.out.format("fib(%d)=%s %n", i, fibonacci.get(i));
 			}
 		} catch (NumberFormatException nfe) {
 			System.out.format("%s is not an integer.%n", arg);
