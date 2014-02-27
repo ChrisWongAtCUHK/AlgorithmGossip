@@ -22,7 +22,7 @@ public class FibonacciByArray {
 	 * @param n index of list
 	 * @return nth fibonacci number
 	 */
-	Integer get(int n){
+	public Integer get(int n){
 		if(n >= fib.size()){
 			for(int i = fib.size(); i <= n; i++){
 				fib.add(fib.get(i - 1) + fib.get(i - 2));
