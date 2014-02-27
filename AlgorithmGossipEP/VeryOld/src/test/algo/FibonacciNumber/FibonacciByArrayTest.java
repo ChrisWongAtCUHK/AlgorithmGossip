@@ -7,8 +7,17 @@ import org.junit.runner.*;
 import org.junit.runners.*;
 import algo.FibonacciNumber.*;
 
+/**
+ * @author Chris Wong
+ * <p>
+ *  <a href="http://openhome.cc/Gossip/JUnit/JUnit4.html">FibonacciByArrayTest</a>
+ * </p>
+ */
 @RunWith(value=Parameterized.class)
 public class FibonacciByArrayTest {
+	/**
+	 * @return the 2d-array of expected values and parameters
+	 */
 	@Parameterized.Parameters
     public static Collection<Integer[]> getParameters() {
         return Arrays.asList(
@@ -22,8 +31,11 @@ public class FibonacciByArrayTest {
     
     private int expected;
     private int n;
-
     
+    /**
+     * @param expected expected result
+     * @param n parameter for get() method 
+     */
     public FibonacciByArrayTest(int expected, int n) {
         this.expected = expected;
         this.n = n;
