@@ -64,7 +64,7 @@ public class FibonacciByArrayTest {
     }
     
     @Test
-    public void testPlus() {
+    public void testGet() {
     	FibonacciByArray fibonacciByArray = new FibonacciByArray();
     	String result = fibonacciByArray.get(n).toString();
         assertEquals(expected, result);
