@@ -1,0 +1,8 @@
+import static java.lang.System.out;
+public class Quine{
+  public static void main(String[] args){
+    String h="import static java.lang.System.out;\npublic class Quine{\n  public static void main(String[] args){\n";
+    String d="String h=String d=String s=String c=";
+    String s="\"\\n;}    ";
+    String c="    out.println(h+s.substring(5)+d.substring(0,9)+s.charAt(0)+(h.substring(0,35)+s.substring(1,3))+h.substring(36,55)+s.substring(1,3)+h.substring(56,97)+s.substring(1,3)+s.charAt(0)+s.charAt(3));out.println(s.substring(5)+d.substring(9,18)+s.charAt(0)+d+s.charAt(0)+s.charAt(3));out.println(s.substring(5)+d.substring(18,27)+s.charAt(0)+s.charAt(1)+s.charAt(0)+s.charAt(1)+s.charAt(1)+s.substring(2)+s.charAt(0)+s.charAt(3));out.println(s.substring(5)+d.substring(27)+s.charAt(0)+c+s.charAt(0)+s.charAt(3));    out.println(c+s.substring(7)+s.charAt(4)+s.charAt(4));";
+    out.println(h+s.substring(5)+d.substring(0,9)+s.charAt(0)+h.substring(0,35)+s.substring(1,3)+h.substring(36,55)+s.substring(1,3)+h.substring(56,97)+s.substring(1,3)+s.charAt(0)+s.charAt(3));out.println(s.substring(5)+d.substring(9,18)+s.charAt(0)+d+s.charAt(0)+s.charAt(3));out.println(s.substring(5)+d.substring(18,27)+s.charAt(0)+s.charAt(1)+s.charAt(0)+s.charAt(1)+s.charAt(1)+s.substring(2)+s.charAt(0)+s.charAt(3));out.println(s.substring(5)+d.substring(27)+s.charAt(0)+c+s.charAt(0)+s.charAt(3));    out.println(c+s.substring(7)+s.charAt(4)+s.charAt(4));  }}
