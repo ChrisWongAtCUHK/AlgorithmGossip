@@ -9,13 +9,15 @@
 		<property name="fib-arr-main-class"			value="algo.FibonacciNumber.FibonacciByArray"/>
 		<property name="fib-rec-main-class"			value="algo.FibonacciNumber.FibonacciByRecurrsion"/>
 		<property name="fib-mul-main-class"			value="algo.FibonacciNumber.FibonacciByMultiplication"/>
-        <property name="base-dir"           		value="bin"/>
+		<property name="fib-arr-test-class"			value="test.algo.FibonacciNumber.FibonacciByArrayTest"/>
+		<property name="base-dir"           		value="bin"/>
 		<property name="deploy-dir"          	 	value="deploy"/>
         <property name="javadoc-dir"       			value="doc"/>
 		<property name="lib-dir"	       			value="lib"/>
 		<property name="ref-dir"       				value="ref"/>
 		<property name="resource-dir"       		value="resource"/>
 		<property name="src-dir"       				value="src"/>
+		<property name="junit.jar" 					value="${env.MYJUNIT4.JAR}"/>
 		<property name="n"       					value="3"/>
 	</target>
 
@@ -59,6 +61,9 @@
 	<!-- Compile source files -->
     <target name="compile" depends="prepare">
 		<javac srcdir="${src-dir}" destdir="${base-dir}" includeantruntime="false">
+			<classpath> 
+				<pathelement location="${junit.dir}"/>  
+			</classpath>  
 		</javac>
     </target>
 	
@@ -114,9 +119,20 @@
 		</java>
     </target>
 			
+	<!-- JUnit test: http://openhome.cc/Gossip/JUnit/AntJUnit.html -->
+	<target name="test fib-arr" depends="compile"> 
+		<junit printsummary="yes"> 
+			<test name="${fib-arr-test-class}"/> 
+			<classpath> 
+				<pathelement location="${base-dir}"/>
+				<pathelement location="${junit.jar}"/>
+			</classpath>
+		</junit>
+    </target>
+	
 	<!-- Help menu -->
 	<target name="help" description="help information" depends="check">
-		<echo>Recommendation: run by java command instead of ant</echo>
+		<echo>Recommendation for hanoi: run by java command instead of ant for user input</echo>
 		<echo>Sample cmd: ant "run hanoi"</echo>
 		<echo>	alias to java -cp bin ${hanoi-main-class}</echo>
 		<echo>Sample cmd: ant "jar hanoi"</echo>
@@ -139,5 +155,7 @@
 		<echo>	alias to java -cp bin -Dn=20 ${fib-mul-main-class}</echo>
 		<echo>Sample cmd: ant "jar fib-mul" -Dn=20</echo>
 		<echo>	alias to java -cp deploy/${project-name}.jar -Dn=20 ${fib-mul-main-class}</echo>
+		<echo>Sample cmd: ant "test fib-arr"</echo>
+		<echo>	alternative: java -cp ${base-dir};%MYJUNIT4.JAR% org.junit.runner.JUnitCore ${fib-arr-test-class}</echo>
 	</target>
 </project>
