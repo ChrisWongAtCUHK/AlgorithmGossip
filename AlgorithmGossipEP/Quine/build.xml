@@ -95,7 +95,12 @@
 	
 	<!-- Help menu -->
 	<target name="help" description="help information" depends="check">
-		<echo>Reference: http://openhome.cc/Gossip/AlgorithmGossip/Quine.htm</echo>
+		<echo>Reference: 
+		Algorithme Gossip
+		http://openhome.cc/Gossip/AlgorithmGossip/Quine.htm
+		Wikipedia
+		http://en.wikipedia.org/wiki/Quine_(computing)
+		</echo>
 		<echo>Sample cmd: ant run</echo>
 		<echo>	alias to java -cp Quine ${main-class}</echo>
 		<echo>Sample cmd: ant "test fib-arr"</echo>
