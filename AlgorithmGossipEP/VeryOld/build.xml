@@ -126,7 +126,12 @@
 			<sysproperty key="n" value="${n}"/>
 		</java>
     </target>
-			
+	<target name="jar flags" depends="build">
+		<java fork="true" failonerror="true" classname="${threecolorsflags-main-class}" classpath="deploy/${project-name}.jar" >
+			<sysproperty key="flags" value="${flags}"/>
+		</java>
+	</target>
+	
 	<!-- JUnit test: http://openhome.cc/Gossip/JUnit/AntJUnit.html -->
 	<target name="test fib-arr" depends="compile"> 
 		<junit printsummary="yes"> 
@@ -149,6 +154,8 @@
 		<echo>	alias to java -cp bin -Dn=3 ${fib-arr-main-class}</echo>
 		<echo>Sample cmd: ant "run fib-arr" -Dn=20</echo>
 		<echo>	alias to java -cp bin -Dn=20 ${fib-arr-main-class}</echo>
+		<echo>Sample cmd: ant "run flags" -Dflags=WRB</echo>
+		<echo>	alias to java -cp bin -Dflags=WRB ${threecolorsflags-main-class}</echo>
 		<echo>Sample cmd: ant "jar fib-arr" -Dn=20</echo>
 		<echo>	alias to java -cp deploy/${project-name}.jar -Dn=20 ${fib-arr-main-class}</echo>	
 		<echo>Sample cmd: ant "run fib-rec"</echo>
@@ -165,5 +172,7 @@
 		<echo>	alias to java -cp deploy/${project-name}.jar -Dn=20 ${fib-mul-main-class}</echo>
 		<echo>Sample cmd: ant "test fib-arr"</echo>
 		<echo>	alternative: java -cp ${base-dir};%MYJUNIT4.JAR% org.junit.runner.JUnitCore ${fib-arr-test-class}</echo>
+		<echo>Sample cmd: ant "jar flags" -Dflags=WRB</echo>
+		<echo>	alias to java -cp deploy/${project-name}.jar -Dflags=WRB ${threecolorsflags-main-class}</echo>
 	</target>
 </project>
