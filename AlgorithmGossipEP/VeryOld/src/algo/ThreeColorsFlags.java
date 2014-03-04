@@ -14,14 +14,15 @@ public class ThreeColorsFlags {
      * @param y		index of second element
      */
     private static void swap(char[] arr, int x, int y) {
-        char tmp = arr[x]; 
-        arr[x] = arr[y]; 
-        arr[y] = tmp;
-        // show the steps in verbose
+    	// show the steps in verbose
+    	System.out.print("swap:");
         for(char c: arr){
         	System.out.print(c);
         }
         System.out.println();
+        char tmp = arr[x]; 
+        arr[x] = arr[y]; 
+        arr[y] = tmp;
     }
     
     /**
@@ -40,10 +41,13 @@ public class ThreeColorsFlags {
 	                w++;
 	                break;
 	            case 'B': 
+	            	System.out.print("b w swap---");
 	                swap(fs, b, w);
 	                b++; w++; 
+	                
 	                break;
 	            case 'R': 
+	            	System.out.print("r w swap---");
 	                swap(fs, r, w);
 	                r--;
 	        }
