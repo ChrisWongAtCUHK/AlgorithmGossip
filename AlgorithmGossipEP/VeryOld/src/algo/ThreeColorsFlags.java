@@ -34,17 +34,19 @@ public class ThreeColorsFlags {
         int b = 0, w = 0, r = fs.length - 1;
         while(fs[w] == 'B' && w < fs.length) { b++; w++; }
         while(fs[r] == 'R' && r > 0) { r--; }
-        while(w <= r) switch(fs[w]) {
-            case 'W': 
-                w++;
-                break;
-            case 'B': 
-                swap(fs, b, w);
-                b++; w++; 
-                break;
-            case 'R': 
-                swap(fs, r, w);
-                r--;
+        while(w <= r) {
+	        switch(fs[w]) {
+	            case 'W': 
+	                w++;
+	                break;
+	            case 'B': 
+	                swap(fs, b, w);
+	                b++; w++; 
+	                break;
+	            case 'R': 
+	                swap(fs, r, w);
+	                r--;
+	        }
         }
         
         return new String(fs);

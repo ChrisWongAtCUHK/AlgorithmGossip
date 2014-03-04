@@ -143,19 +143,26 @@
 		</junit>
     </target>
 	
-	<!-- Help menu -->
+	<!-- Help main menu -->
 	<target name="help" description="help information" depends="check">
+		<echo>ant "help hanoi"</echo>
+		<echo>ant "help fib"</echo>
+		<echo>ant "help flags"</echo>
+	</target>
+	
+	<!--Help sub menus -->
+	<target name="help hanoi" description="help information" depends="check">
 		<echo>Recommendation for hanoi: run by java command instead of ant for user input</echo>
 		<echo>Sample cmd: ant "run hanoi"</echo>
 		<echo>	alias to java -cp bin ${hanoi-main-class}</echo>
 		<echo>Sample cmd: ant "jar hanoi"</echo>
 		<echo>	alias to java -cp deploy/${project-name}.jar ${hanoi-main-class}</echo>
+	</target>
+	<target name="help fib" description="help information" depends="check">
 		<echo>Sample cmd: ant "run fib-arr"</echo>
 		<echo>	alias to java -cp bin -Dn=3 ${fib-arr-main-class}</echo>
 		<echo>Sample cmd: ant "run fib-arr" -Dn=20</echo>
 		<echo>	alias to java -cp bin -Dn=20 ${fib-arr-main-class}</echo>
-		<echo>Sample cmd: ant "run flags" -Dflags=WRB</echo>
-		<echo>	alias to java -cp bin -Dflags=WRB ${threecolorsflags-main-class}</echo>
 		<echo>Sample cmd: ant "jar fib-arr" -Dn=20</echo>
 		<echo>	alias to java -cp deploy/${project-name}.jar -Dn=20 ${fib-arr-main-class}</echo>	
 		<echo>Sample cmd: ant "run fib-rec"</echo>
@@ -172,6 +179,12 @@
 		<echo>	alias to java -cp deploy/${project-name}.jar -Dn=20 ${fib-mul-main-class}</echo>
 		<echo>Sample cmd: ant "test fib-arr"</echo>
 		<echo>	alternative: java -cp ${base-dir};%MYJUNIT4.JAR% org.junit.runner.JUnitCore ${fib-arr-test-class}</echo>
+	</target>
+	<target name="help flags" description="help information" depends="check">
+		<echo>Sample cmd: ant "run flags" -Dflags=BRWWRB</echo>
+		<echo>	alias to java -cp bin -Dflags=BRWWRB ${threecolorsflags-main-class}</echo>
+		<echo>Sample cmd: ant "run flags" -Dflags=WRB</echo>
+		<echo>	alias to java -cp deploy/${project-name}.jar -Dflags=WRB ${threecolorsflags-main-class}</echo>
 		<echo>Sample cmd: ant "jar flags" -Dflags=WRB</echo>
 		<echo>	alias to java -cp deploy/${project-name}.jar -Dflags=WRB ${threecolorsflags-main-class}</echo>
 	</target>
