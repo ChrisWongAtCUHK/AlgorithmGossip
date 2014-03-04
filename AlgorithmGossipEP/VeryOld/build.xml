@@ -4,21 +4,23 @@
 	
 	<!-- Set up the properties -->
 	<target name="setProperties" description="set up properties">
-		<property name="project-name"       		value="AlgorithmGossip"/>
-        <property name="hanoi-main-class"			value="algo.Hanoi"/>
-		<property name="fib-arr-main-class"			value="algo.FibonacciNumber.FibonacciByArray"/>
-		<property name="fib-rec-main-class"			value="algo.FibonacciNumber.FibonacciByRecurrsion"/>
-		<property name="fib-mul-main-class"			value="algo.FibonacciNumber.FibonacciByMultiplication"/>
-		<property name="fib-arr-test-class"			value="test.algo.FibonacciNumber.FibonacciByArrayTest"/>
-		<property name="base-dir"           		value="bin"/>
-		<property name="deploy-dir"          	 	value="deploy"/>
-        <property name="javadoc-dir"       			value="doc"/>
-		<property name="lib-dir"	       			value="lib"/>
-		<property name="ref-dir"       				value="ref"/>
-		<property name="resource-dir"       		value="resource"/>
-		<property name="src-dir"       				value="src"/>
-		<property name="junit.jar" 					value="${env.MYJUNIT4.JAR}"/>
-		<property name="n"       					value="3"/>
+		<property name="project-name"       			value="AlgorithmGossip"/>
+        <property name="hanoi-main-class"				value="algo.Hanoi"/>
+		<property name="fib-arr-main-class"				value="algo.FibonacciNumber.FibonacciByArray"/>
+		<property name="fib-rec-main-class"				value="algo.FibonacciNumber.FibonacciByRecurrsion"/>
+		<property name="fib-mul-main-class"				value="algo.FibonacciNumber.FibonacciByMultiplication"/>
+		<property name="fib-arr-test-class"				value="test.algo.FibonacciNumber.FibonacciByArrayTest"/>
+		<property name="threecolorsflags-main-class"	value="algo.ThreeColorsFlags"/>
+		<property name="base-dir"           			value="bin"/>
+		<property name="deploy-dir"          	 		value="deploy"/>
+        <property name="javadoc-dir"       				value="doc"/>
+		<property name="lib-dir"	       				value="lib"/>
+		<property name="ref-dir"       					value="ref"/>
+		<property name="resource-dir"       			value="resource"/>
+		<property name="src-dir"       					value="src"/>
+		<property name="junit.jar" 						value="${env.MYJUNIT4.JAR}"/>
+		<property name="n"       						value="3"/>
+		<property name="flags"       					value="BWR"/>
 	</target>
 
 	<!-- Necessary checking -->
@@ -98,6 +100,12 @@
         </java>
     </target>
 	
+	<target name="run flags" depends="compile">
+        <java classname="${threecolorsflags-main-class}" classpath="${base-dir}" >
+        	 <sysproperty key="flags" value="${flags}"/>
+        </java>
+    </target>
+		
 	<!-- Run by jar -->
 	<target name="jar hanoi" depends="build">
 		<java fork="true" failonerror="true" classname="${hanoi-main-class}" classpath="deploy/${project-name}.jar" >
