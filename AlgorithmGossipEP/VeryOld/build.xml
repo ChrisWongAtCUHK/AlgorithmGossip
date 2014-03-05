@@ -11,6 +11,7 @@
 		<property name="fib-mul-main-class"				value="algo.FibonacciNumber.FibonacciByMultiplication"/>
 		<property name="fib-arr-test-class"				value="test.algo.FibonacciNumber.FibonacciByArrayTest"/>
 		<property name="threecolorsflags-main-class"	value="algo.ThreeColorsFlags"/>
+		<property name="mousegomaze-main-class"			value="algo.Mouse"/>
 		<property name="base-dir"           			value="bin"/>
 		<property name="deploy-dir"          	 		value="deploy"/>
         <property name="javadoc-dir"       				value="doc"/>
@@ -99,13 +100,18 @@
         	 <sysproperty key="n" value="${n}"/>
         </java>
     </target>
-	
 	<target name="run flags" depends="compile">
         <java classname="${threecolorsflags-main-class}" classpath="${base-dir}" >
         	 <sysproperty key="flags" value="${flags}"/>
         </java>
     </target>
-		
+	<target name="run mouse" depends="compile">
+        <java classname="${mousegomaze-main-class}" classpath="${base-dir}" >
+        	 <sysproperty key="flags" value="${flags}"/>
+        </java>
+    </target>
+    	
+	
 	<!-- Run by jar -->
 	<target name="jar hanoi" depends="build">
 		<java fork="true" failonerror="true" classname="${hanoi-main-class}" classpath="deploy/${project-name}.jar" >
@@ -131,6 +137,11 @@
 			<sysproperty key="flags" value="${flags}"/>
 		</java>
 	</target>
+	<target name="jar mouse" depends="build">
+		<java fork="true" failonerror="true" classname="${mousegomaze-main-class}" classpath="deploy/${project-name}.jar" >
+			<sysproperty key="flags" value="${flags}"/>
+		</java>
+	</target>
 	
 	<!-- JUnit test: http://openhome.cc/Gossip/JUnit/AntJUnit.html -->
 	<target name="test fib-arr" depends="compile"> 
@@ -148,6 +159,7 @@
 		<echo>ant "help hanoi"</echo>
 		<echo>ant "help fib"</echo>
 		<echo>ant "help flags"</echo>
+		<echo>ant "help mouse"</echo>
 	</target>
 	
 	<!--Help sub menus -->
@@ -187,5 +199,11 @@
 		<echo>	alias to java -cp deploy/${project-name}.jar -Dflags=WRB ${threecolorsflags-main-class}</echo>
 		<echo>Sample cmd: ant "jar flags" -Dflags=WRB</echo>
 		<echo>	alias to java -cp deploy/${project-name}.jar -Dflags=WRB ${threecolorsflags-main-class}</echo>
+	</target>
+	<target name="help mouse" description="help information" depends="check">
+		<echo>Sample cmd: ant "run mouse"</echo>
+		<echo>	alias to java -cp bin ${mousegomaze-main-class}</echo>
+		<echo>Sample cmd: ant "jar mouse"</echo>
+		<echo>	alias to java -cp deploy/${project-name}.jar ${mousegomaze-main-class}</echo>
 	</target>
 </project>
