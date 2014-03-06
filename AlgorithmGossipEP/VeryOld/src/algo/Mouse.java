@@ -2,6 +2,8 @@ package algo;
 
 import static java.lang.System.out;
 
+import java.util.Scanner;
+
 /**
  * @author Chris Wong
  * <p>
@@ -44,11 +46,16 @@ public class Mouse {
     public static boolean visit(int[][] maze, Point pt, Point end) {
         if(isVisitable(maze, pt)) {
             maze[pt.x][pt.y] = 1;
-            printMaze(maze);
-            if(!isEnd(maze, end) && !tryOneOut(maze, pt, end)) {
+            printMaze(maze, pt.x, pt.y);
+            boolean isEnd = isEnd(maze, end);
+            boolean tryOneOut = tryOneOut(maze, pt, end);
+            if(!isEnd && !tryOneOut) {
                 maze[pt.x][pt.y] = 0;
+                printMaze(maze, pt.x, pt.y);
+            } else {
+            	
             }
-            printMaze(maze);
+            
         }
         return isEnd(maze, end);
     }
@@ -84,7 +91,7 @@ public class Mouse {
                visit(maze, new Point(pt.x - 1, pt.y), end);
     }
     
-    public static void printMaze(int[][] maze){
+    public static void printMaze(int[][] maze, int x, int y){
     	for(int[] row : maze) {
 	    	for(int block : row) switch(block) {
 		        case 0: out.print(" "); break;
@@ -93,7 +100,10 @@ public class Mouse {
 		    }
 		    out.println();
     	}
+    	out.println("(" + x + ", " + y + ")");
     	out.println("--------------------------");
+    	Scanner scanner = new Scanner(System.in);
+    	//scanner.nextLine();
     }
     
     /**
