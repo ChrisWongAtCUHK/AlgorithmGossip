@@ -2,6 +2,15 @@ package algo;
 
 import static java.lang.System.out;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -32,7 +41,7 @@ public class Mouse {
      * @param end	end point
      * @return		integer 2d-array
      */
-    public static int[][] go(int[][] maze, Point start, Point end) {
+    public static ArrayList<ArrayList<Integer>> go(ArrayList<ArrayList<Integer>> maze, Point start, Point end) {
         visit(maze, start, end);
         return maze;
     }
@@ -43,18 +52,15 @@ public class Mouse {
      * @param end	the end point
      * @return		if end point could be found
      */
-    public static boolean visit(int[][] maze, Point pt, Point end) {
+    public static boolean visit(ArrayList<ArrayList<Integer>> maze, Point pt, Point end) {
         if(isVisitable(maze, pt)) {
-            maze[pt.x][pt.y] = 1;
+        	maze.get(pt.x).set(pt.y, 1);
             printMaze(maze, pt.x, pt.y);
-            boolean isEnd = isEnd(maze, end);
-            boolean tryOneOut = tryOneOut(maze, pt, end);
-            if(!isEnd && !tryOneOut) {
-                maze[pt.x][pt.y] = 0;
+
+            if(!isEnd(maze, end) && !tryOneOut(maze, pt, end)) {
+            	maze.get(pt.x).set(pt.y, 0);
                 printMaze(maze, pt.x, pt.y);
-            } else {
-            	
-            }
+            } 
             
         }
         return isEnd(maze, end);
@@ -65,8 +71,8 @@ public class Mouse {
      * @param pt	the point
      * @return		if the point is visitable
      */
-    public static boolean isVisitable(int[][] maze, Point pt) {
-        return maze[pt.x][pt.y] == 0;
+    public static boolean isVisitable(ArrayList<ArrayList<Integer>> maze, Point pt) {
+    	return maze.get(pt.x).get(pt.y).intValue() == 0;
     }
     
     /**	Check if a point is the end point
@@ -74,8 +80,8 @@ public class Mouse {
      * @param end	the end point
      * @return		if end point is found
      */
-    public static boolean isEnd(int[][] maze, Point end) {
-        return maze[end.x][end.y] == 1;
+    public static boolean isEnd(ArrayList<ArrayList<Integer>> maze, Point end) {
+        return maze.get(end.x).get(end.y).intValue() == 1;
     }
     
     /** Make visits in four directions
@@ -84,16 +90,16 @@ public class Mouse {
      * @param end	the end point
      * @return
      */
-    public static boolean tryOneOut(int[][] maze, Point pt, Point end) {
+    public static boolean tryOneOut(ArrayList<ArrayList<Integer>> maze, Point pt, Point end) {
         return visit(maze, new Point(pt.x, pt.y + 1), end) ||
                visit(maze, new Point(pt.x + 1, pt.y), end) ||
                visit(maze, new Point(pt.x, pt.y - 1), end) ||
                visit(maze, new Point(pt.x - 1, pt.y), end);
     }
     
-    public static void printMaze(int[][] maze, int x, int y){
-    	for(int[] row : maze) {
-	    	for(int block : row) switch(block) {
+    public static void printMaze(ArrayList<ArrayList<Integer>> maze, int x, int y){
+    	for(ArrayList<Integer> row : maze) {
+	    	for(Integer block : row) switch(block.intValue()) {
 		        case 0: out.print(" "); break;
 		        case 1: out.print("."); break;
 		        case 2: out.print("#");
@@ -110,7 +116,33 @@ public class Mouse {
      * @param args
      */
     public static void main(String[] args) {
-        int[][] maze = new int[][]{{2, 2, 2, 2, 2, 2, 2}, 
+    	ArrayList<ArrayList<Integer>> maze = new ArrayList<ArrayList<Integer>>();
+    	try {
+			FileInputStream fis = new FileInputStream("maze.txt");
+			DataInputStream dis = new DataInputStream(fis);
+			BufferedReader br = new BufferedReader(new InputStreamReader(dis));
+			String strLine;
+			try {
+				while((strLine = br.readLine()) != null){	// read file line by line
+					String[] strings = strLine.split(",");
+					ArrayList<Integer> row = new ArrayList<Integer>();
+					for(String s: strings){					// read line one element by one element
+						row.add(Integer.valueOf(s.trim()));
+					}
+					maze.add(row);
+				}
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+    	
+        int[][] aMaze = new int[][]{{2, 2, 2, 2, 2, 2, 2}, 
                                    {2, 0, 0, 0, 0, 0, 2}, 
                                    {2, 0, 2, 0, 2, 0, 2}, 
                                    {2, 0, 0, 2, 0, 2, 2}, 
@@ -118,12 +150,12 @@ public class Mouse {
                                    {2, 0, 0, 0, 0, 0, 2}, 
                                    {2, 2, 2, 2, 2, 2, 2}};
                                    
-        for(int[] row : Mouse.go(maze, new Point(1, 1), new Point(5, 5))) {
-            for(int block : row) switch(block) {
-                case 0: out.print(" "); break;
-                case 1: out.print("."); break;
-                case 2: out.print("#");
-            }
+        for(ArrayList<Integer> row: Mouse.go(maze, new Point(1, 1), new Point(5, 5))) {
+        	for(Integer block : row) switch(block.intValue()) {
+		        case 0: out.print(" "); break;
+		        case 1: out.print("."); break;
+		        case 2: out.print("#");
+		    }
             out.println();
         }
         out.println(Mouse.isEnd(maze, new Point(5, 5)) 
