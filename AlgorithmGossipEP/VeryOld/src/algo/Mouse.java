@@ -2,6 +2,12 @@ package algo;
 
 import static java.lang.System.out;
 
+/**
+ * @author Chris Wong
+ * <p>
+ *  Point contains coordinates in form of (x, y) 
+ * </p>
+ */
 class Point {
     final int x;
     final int y;
@@ -18,12 +24,18 @@ class Point {
  *	</p>
  */
 public class Mouse {
+    /** Go from one point to another point
+     * @param maze	integer 2d-array
+     * @param start	start point
+     * @param end	end point
+     * @return		integer 2d-array
+     */
     public static int[][] go(int[][] maze, Point start, Point end) {
         visit(maze, start, end);
         return maze;
     }
     
-    /**
+    /**	Take a visit
      * @param maze	integer 2d-array
      * @param pt	the point
      * @param end	the end point
@@ -32,14 +44,16 @@ public class Mouse {
     public static boolean visit(int[][] maze, Point pt, Point end) {
         if(isVisitable(maze, pt)) {
             maze[pt.x][pt.y] = 1;
+            printMaze(maze);
             if(!isEnd(maze, end) && !tryOneOut(maze, pt, end)) {
                 maze[pt.x][pt.y] = 0;
             }
+            printMaze(maze);
         }
         return isEnd(maze, end);
     }
 
-    /**
+    /**	Check if the point could be visited
      * @param maze	integer 2d-array
      * @param pt	the point
      * @return		if the point is visitable
@@ -48,7 +62,7 @@ public class Mouse {
         return maze[pt.x][pt.y] == 0;
     }
     
-    /**
+    /**	Check if a point is the end point
      * @param maze	integer 2d-array
      * @param end	the end point
      * @return		if end point is found
@@ -57,7 +71,7 @@ public class Mouse {
         return maze[end.x][end.y] == 1;
     }
     
-    /**
+    /** Make visits in four directions
      * @param maze	integer 2d-array
      * @param pt	the point
      * @param end	the end point
@@ -68,6 +82,18 @@ public class Mouse {
                visit(maze, new Point(pt.x + 1, pt.y), end) ||
                visit(maze, new Point(pt.x, pt.y - 1), end) ||
                visit(maze, new Point(pt.x - 1, pt.y), end);
+    }
+    
+    public static void printMaze(int[][] maze){
+    	for(int[] row : maze) {
+	    	for(int block : row) switch(block) {
+		        case 0: out.print(" "); break;
+		        case 1: out.print("."); break;
+		        case 2: out.print("#");
+		    }
+		    out.println();
+    	}
+    	out.println("--------------------------");
     }
     
     /**
