@@ -1,4 +1,21 @@
 #encoding: Big5
+
+# print out the maze
+def printMaze(maze)
+	maze.each do |row|
+		row.each do |block|
+			case block
+				when 0 then print " "
+				when 1 then print "."
+				when 2 then print "#"
+			end
+		end
+		puts
+	end
+	
+	puts "---------------------------------------"
+end
+
 class Mouse
     def self.go(maze, start, goal)
         route = []
@@ -9,6 +26,7 @@ class Mouse
     def self.visit(maze, pt, goal, route)
         if isVisitable(maze, pt, route)
             route << pt
+			
             if not isGoal(route, goal) and 
                not tryOneOut(maze, pt, goal, route)
                 route.pop
@@ -43,21 +61,15 @@ maze = [
           [2, 2, 2, 2, 2, 2, 2]
        ]
        
-Mouse.go(maze, {x: 1, y: 1}, {x: 5, y: 5}).each do |pt|
+end_pt = {x: 5, y: 5}
+
+Mouse.go(maze, {x: 1, y: 1}, {x: end_pt[:x], y: end_pt[:y]}).each do |pt|
     maze[pt[:x]][pt[:y]] = 1
+	printMaze(maze)
 end
 
-if maze[5][5] == 0
+if maze[end_pt[:x]][end_pt[:y]] == 0
     puts "找不到出口"
 end
 
-maze.each do |row|
-    row.each do |block|
-        case block
-            when 0 then print " "
-            when 1 then print "."
-            when 2 then print "#"
-        end
-    end
-    puts
-end
+printMaze(maze)
