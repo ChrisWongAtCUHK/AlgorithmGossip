@@ -1,0 +1,32 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+function adjust(flags) {
+	var fs = flags.split("");
+	var w = 0;
+	var r = fs.length - 1;
+	while(fs[w] === 'B' && w < fs.length) { w++; }
+	while(fs[r] === 'R' && r > 0) { r--; }
+	while(w <= r) switch(fs[w]) {
+		case 'W':
+			w++; 
+			break;
+		case 'B':
+			fs.unshift(fs.splice(w, 1));
+			w++;
+			break;
+		case 'R':
+			fs.push(fs.splice(w, 1));
+			r--;
+	}
+	return fs.join("");
+
+}
+
+document.write(adjust("RWBWRWBW").toString());
+
+</script>
+</body>
+</html>
