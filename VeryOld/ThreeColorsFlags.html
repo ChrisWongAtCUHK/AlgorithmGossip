@@ -1,7 +1,5 @@
 <html>
 <head>
-</head>
-<body>
 <script type="text/javascript">
 function adjust(flags) {
 	var fs = flags.split("");
@@ -25,8 +23,16 @@ function adjust(flags) {
 
 }
 
-document.write(adjust("RWBWRWBW").toString());
-
+//document.write(adjust("RWBWRWBW").toString());
+function show(){
+	var input = document.getElementById('flags').value;
+	alert(adjust(input));
+}
 </script>
+</head>
+<body>
+Flags: <input type="text" id="flags"/>
+<br/>
+<button onclick="show()">Try it</button>
 </body>
 </html>
