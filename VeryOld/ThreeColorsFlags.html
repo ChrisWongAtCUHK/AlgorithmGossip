@@ -1,8 +1,9 @@
 <html>
 <head>
 <script type="text/javascript">
-function adjust(flags) {
-	var fs = flags.split("");
+
+// Adjust function 
+function adjust(fs) {
 	var w = 0;
 	var r = fs.length - 1;
 	while(fs[w] === 'B' && w < fs.length) { w++; }
@@ -26,7 +27,21 @@ function adjust(flags) {
 //document.write(adjust("RWBWRWBW").toString());
 function show(){
 	var input = document.getElementById('flags').value;
-	alert(adjust(input));
+	var arr_i = input.toUpperCase().split("");
+	var doAdjust = true;
+
+	// verify the input string
+	for(var i = 0; i < arr_i.length; i++){
+		if((arr_i[i] != 'W') && (arr_i[i] != 'B') && (arr_i[i] != 'R')){
+			alert("Input should contain 'W', 'B', 'R' only");
+			doAdjust = false;
+			break;
+		}
+	}
+
+	// if the input is valid, do the adjustment
+	if(doAdjust)
+		alert(adjust(arr_i));
 }
 </script>
 </head>
