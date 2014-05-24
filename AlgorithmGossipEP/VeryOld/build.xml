@@ -12,6 +12,7 @@
 		<property name="fib-arr-test-class"				value="test.algo.FibonacciNumber.FibonacciByArrayTest"/>
 		<property name="threecolorsflags-main-class"	value="algo.ThreeColorsFlags"/>
 		<property name="mousegomaze-main-class"			value="algo.Mouse"/>
+		<property name="knight-main-class"				value="algo.Knight"/>
 		<property name="base-dir"           			value="bin"/>
 		<property name="deploy-dir"          	 		value="deploy"/>
         <property name="javadoc-dir"       				value="doc"/>
@@ -19,7 +20,7 @@
 		<property name="ref-dir"       					value="ref"/>
 		<property name="resource-dir"       			value="resource"/>
 		<property name="src-dir"       					value="src"/>
-		<property name="junit.jar" 						value="${env.MYJUNIT4.JAR}"/>
+		<property name="junit.jar" 						value="${env.MYJUNIT4_JAR}"/>
 		<property name="n"       						value="3"/>
 		<property name="flags"       					value="BWR"/>
 	</target>
@@ -65,7 +66,7 @@
     <target name="compile" depends="prepare">
 		<javac srcdir="${src-dir}" destdir="${base-dir}" includeantruntime="false">
 			<classpath> 
-				<pathelement location="${junit.dir}"/>  
+				<pathelement location="${junit.jar}"/>  
 			</classpath>  
 		</javac>
     </target>
@@ -107,6 +108,11 @@
     </target>
 	<target name="run mouse" depends="compile">
         <java classname="${mousegomaze-main-class}" classpath="${base-dir}" >
+        	 <sysproperty key="flags" value="${flags}"/>
+        </java>
+    </target>
+	<target name="run knight" depends="compile">
+        <java classname="${knight-main-class}" classpath="${base-dir}" >
         	 <sysproperty key="flags" value="${flags}"/>
         </java>
     </target>
@@ -160,6 +166,7 @@
 		<echo>ant "help fib"</echo>
 		<echo>ant "help flags"</echo>
 		<echo>ant "help mouse"</echo>
+		<echo>${junit.jar}</echo>
 	</target>
 	
 	<!--Help sub menus -->
