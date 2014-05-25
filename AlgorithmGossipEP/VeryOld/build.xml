@@ -113,7 +113,8 @@
     </target>
 	<target name="run knight" depends="compile">
         <java classname="${knight-main-class}" classpath="${base-dir}" >
-        	 <sysproperty key="flags" value="${flags}"/>
+        	 <sysproperty key="x" value="${x}"/>
+        	 <sysproperty key="y" value="${y}"/>
         </java>
     </target>
     	
@@ -148,6 +149,12 @@
 			<sysproperty key="flags" value="${flags}"/>
 		</java>
 	</target>
+	<target name="jar knight" depends="build">
+		<java fork="true" failonerror="true" classname="${knight-main-class}" classpath="deploy/${project-name}.jar" >
+			<sysproperty key="x" value="${x}"/>
+			<sysproperty key="y" value="${y}"/>
+		</java>
+	</target>
 	
 	<!-- JUnit test: http://openhome.cc/Gossip/JUnit/AntJUnit.html -->
 	<target name="test fib-arr" depends="compile"> 
@@ -166,6 +173,7 @@
 		<echo>ant "help fib"</echo>
 		<echo>ant "help flags"</echo>
 		<echo>ant "help mouse"</echo>
+		<echo>ant "help knight"</echo>
 		<echo>${junit.jar}</echo>
 	</target>
 	
@@ -212,5 +220,11 @@
 		<echo>	alias to java -cp bin ${mousegomaze-main-class}</echo>
 		<echo>Sample cmd: ant "jar mouse"</echo>
 		<echo>	alias to java -cp deploy/${project-name}.jar ${mousegomaze-main-class}</echo>
+	</target>
+	<target name="help knight" description="help information" depends="check">
+		<echo>Sample cmd: ant "run knight" -Dx=5 -Dy=6</echo>
+		<echo>	alternative: java -Dx=5 -Dy=6 -cp ${base-dir} ${knight-main-class}</echo>
+		<echo>Sample cmd: ant "jar knight" -Dx=5 -Dy=6</echo>
+		<echo>	alias to java -Dx=5 -Dy=6 -cp deploy/${project-name}.jar ${knight-main-class}</echo>
 	</target>
 </project>

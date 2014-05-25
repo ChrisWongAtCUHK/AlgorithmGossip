@@ -69,11 +69,15 @@ public class Knight {
 	}
 
 	public static void main(String[] args) {
-		for(int[] row : travel(new Step(5, 6))) {
-			for(int step : row) {
-				out.printf("%3d", step);
+		if((System.getProperty("x") == null) || (System.getProperty("y") == null)){	// show the warning message
+			System.out.println("Please set up the value of x and y.");
+		} else {																	// do the operation
+			for(int[] row : travel(new Step(Integer.valueOf(System.getProperty("y")).intValue(), Integer.valueOf(System.getProperty("y")).intValue()))) {
+				for(int step : row) {
+					out.printf("%3d", step);
+				}
+				out.println();
 			}
-			out.println();
 		}
 	}
 }
