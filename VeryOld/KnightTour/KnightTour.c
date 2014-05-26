@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #define SIZE 8
 
 typedef struct {
@@ -14,9 +15,20 @@ Step get(Step, int*, int);
 Step hard(int[][SIZE], Step, int*);
 int isVisitable(int[][SIZE], Step);
 
-int main(void){
+int main(int argc, char* argv[]){
 	int board[SIZE][SIZE] = {0};
-	travel(board, step(5,6));
+	if(argc != 3){
+		printf("Please specify start x and y\n");
+		return 0;
+	}
+
+	int x = atoi(argv[1]);
+	int y = atoi(argv[2]);
+	if((x > 7) || (y > 7)){
+		printf("x and y should up at most 7\n");
+		return 0;
+	}
+	travel(board, step(x, y));
 
 	int i;
 	for(i = 0; i < SIZE; i++){
@@ -27,6 +39,8 @@ int main(void){
 
 		printf("\n");
 	}
+
+	return 0;
 
 }
 
