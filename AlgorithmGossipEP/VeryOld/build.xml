@@ -13,6 +13,7 @@
 		<property name="threecolorsflags-main-class"	value="algo.ThreeColorsFlags"/>
 		<property name="mousegomaze-main-class"			value="algo.Mouse"/>
 		<property name="knight-main-class"				value="algo.Knight"/>
+		<property name="queens-main-class"				value="algo.Queens"/>
 		<property name="base-dir"           			value="bin"/>
 		<property name="deploy-dir"          	 		value="deploy"/>
         <property name="javadoc-dir"       				value="doc"/>
@@ -115,6 +116,10 @@
         <java classname="${knight-main-class}" classpath="${base-dir}" >
         	 <sysproperty key="x" value="${x}"/>
         	 <sysproperty key="y" value="${y}"/>
+        </java>
+    </target>
+	<target name="run queens" depends="compile">
+        <java classname="${queens-main-class}" classpath="${base-dir}" >
         </java>
     </target>
     	
