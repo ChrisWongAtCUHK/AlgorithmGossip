@@ -46,7 +46,7 @@
 	
     <!-- Generate java document -->
     <target name="doc" depends="check">
-        <javadoc destdir="${javadoc-dir}" encoding="utf-8" charset="utf-8">
+        <javadoc destdir="${javadoc-dir}" encoding="utf-8" charset="utf-8" classpath="${junit.jar}">
             <fileset dir="${src-dir}" casesensitive="yes">
             	<include name="**/*.java"/>
             </fileset>
@@ -160,6 +160,10 @@
 			<sysproperty key="y" value="${y}"/>
 		</java>
 	</target>
+	<target name="jar queens" depends="build">
+		<java fork="true" failonerror="true" classname="${queens-main-class}" classpath="deploy/${project-name}.jar" >
+		</java>
+	</target>
 	
 	<!-- JUnit test: http://openhome.cc/Gossip/JUnit/AntJUnit.html -->
 	<target name="test fib-arr" depends="compile"> 
@@ -179,6 +183,7 @@
 		<echo>ant "help flags"</echo>
 		<echo>ant "help mouse"</echo>
 		<echo>ant "help knight"</echo>
+		<echo>ant "help queens"</echo>
 		<echo>${junit.jar}</echo>
 	</target>
 	
@@ -231,5 +236,11 @@
 		<echo>	alternative: java -Dx=5 -Dy=6 -cp ${base-dir} ${knight-main-class}</echo>
 		<echo>Sample cmd: ant "jar knight" -Dx=5 -Dy=6</echo>
 		<echo>	alias to java -Dx=5 -Dy=6 -cp deploy/${project-name}.jar ${knight-main-class}</echo>
+	</target>
+	<target name="help queens" description="help information" depends="check">
+		<echo>Sample cmd: ant "run queens"</echo>
+		<echo>	alternative: java -cp ${base-dir} ${queens-main-class}</echo>
+		<echo>Sample cmd: ant "jar queens"</echo>
+		<echo>	alias to java -cp deploy/${project-name}.jar ${queens-main-class}</echo>
 	</target>
 </project>
