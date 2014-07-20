@@ -14,6 +14,7 @@
 		<property name="mousegomaze-main-class"			value="algo.Mouse"/>
 		<property name="knight-main-class"				value="algo.Knight"/>
 		<property name="queens-main-class"				value="algo.Queens"/>
+		<property name="eightcoins-main-class"			value="algo.eightcoins.Coins"/>
 		<property name="base-dir"           			value="bin"/>
 		<property name="deploy-dir"          	 		value="deploy"/>
         <property name="javadoc-dir"       				value="doc"/>
@@ -122,6 +123,10 @@
         <java classname="${queens-main-class}" classpath="${base-dir}" >
         </java>
     </target>
+	<target name="run coins" depends="compile">
+        <java classname="${eightcoins-main-class}" classpath="${base-dir}" >
+        </java>
+    </target>
     	
 	
 	<!-- Run by jar -->
@@ -162,6 +167,10 @@
 	</target>
 	<target name="jar queens" depends="build">
 		<java fork="true" failonerror="true" classname="${queens-main-class}" classpath="deploy/${project-name}.jar" >
+		</java>
+	</target>
+	<target name="jar coins" depends="build">
+		<java fork="true" failonerror="true" classname="${eightcoins-main-class}" classpath="deploy/${project-name}.jar" >
 		</java>
 	</target>
 	
@@ -242,5 +251,11 @@
 		<echo>	alternative: java -cp ${base-dir} ${queens-main-class}</echo>
 		<echo>Sample cmd: ant "jar queens"</echo>
 		<echo>	alias to java -cp deploy/${project-name}.jar ${queens-main-class}</echo>
+	</target>
+	<target name="help coins" description="help information" depends="check">
+		<echo>Sample cmd: ant "run coins"</echo>
+		<echo>	alternative: java -cp ${base-dir} ${eightcoins-main-class}</echo>
+		<echo>Sample cmd: ant "jar coins"</echo>
+		<echo>	alias to java -cp deploy/${project-name}.jar ${eightcoins-main-class}</echo>
 	</target>
 </project>
