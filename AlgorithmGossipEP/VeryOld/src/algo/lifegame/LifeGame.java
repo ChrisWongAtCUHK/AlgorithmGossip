@@ -37,7 +37,7 @@ class Cell{
 		int dirs[][] = {{-1,  0}, {-1,  1}, { 0,  1}, { 1,  1},
 						{ 1,  0}, { 1, -1}, { 0, -1}, {-1, -1}};	
 		
-		int count = 1;
+		int count = 0;
 
 		// when count is larger than 4, this cell is not livable
 		for(int i = 0; i < 8 && count < 4; i++){
@@ -125,7 +125,8 @@ public class LifeGame{
 		}
 		out.println();
 		out.println();
-		
+
+		// exit command
 		String next = scanner.nextLine();
 		next = next.toLowerCase();
 		if(next.equals("exit") || next.equals("quit")){
