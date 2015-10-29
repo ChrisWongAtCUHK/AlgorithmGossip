@@ -50,6 +50,9 @@ public class Coins{
 
 	}
 
+	/**
+	 * Main program
+	 */
 	public static void main(String[] args){
 		compare(new int[]{10, 10, 11, 10, 10, 10, 10, 10}, 
 				new Fake(){
